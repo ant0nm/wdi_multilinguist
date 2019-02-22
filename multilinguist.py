@@ -1,8 +1,11 @@
 import requests
 import json
+#import pry
+#import ipdb
+
 
 class Multilinguist:
-  """This class represents a world traveller who knows 
+  """This class represents a world traveller who knows
   what languages are spoken in each country around the world
   and can cobble together a sentence in most of them
   (but not very well)
@@ -15,7 +18,7 @@ class Multilinguist:
 
   def __init__(self):
     """Initializes the multilinguist's current_lang to 'en'
-    
+
     Returns
     -------
     Multilinguist
@@ -34,7 +37,7 @@ class Multilinguist:
 
     Returns
     -------
-    bool 
+    bool
         2 letter iso639_1 language code.
     """
     params = {'fullText': 'true'}
@@ -76,5 +79,6 @@ class Multilinguist:
     params = {'text': msg, 'to': self.current_lang, 'from': 'en'}
     response = requests.get(self.translatr_base_url, params=params)
     json_response = json.loads(response.text)
+    # pry()
+    #ipdb.set_trace(context=5)
     return json_response['translationText']
-
