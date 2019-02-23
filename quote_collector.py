@@ -12,14 +12,15 @@ class QuoteCollector(Multilinguist):
     def add_quote(self, quote):
         self.fav_quotes.append(append)
 
-    def share_quote(self):
-        quote = choice(self.fav_quotes)
-        translated_quote = self.say_in_local_language(quote)
-        return translated_quote
+    def share_quote(self, topic="random"):
+        translated_quote = None
 
-qc = QuoteCollector(["A man is what he thinks about all day long.",
-    "If there is no God, everything is permitted.",
-    "Everyone thinks of changing the world, but no one thinks of changing himself.",
-    "he two most powerful warriors are patience and time.",
-    "If you want to be happy, be.",
-    "There is no greatness where there is no simplicity, goodness and truth."])
+        if topic == "random":
+            random_key = choice(list(self.fav_quotes.keys()))
+            random_quotes = self.fav_quotes[random_key]
+            quote = choice(random_quotes)
+        else:
+            random_quotes = self.fav_quotes[topic]
+            quote = choice(random_quotes)
+
+        return self.say_in_local_language(quote)
